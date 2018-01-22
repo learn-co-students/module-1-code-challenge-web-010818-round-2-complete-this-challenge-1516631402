@@ -16,7 +16,17 @@ class Adapter
   end
 
   def create_objects_from_file
-    # create article and category objects here
+    @articles.each do |article_hash|
+      contributor = article_hash["contributor"]
+      title = article_hash["title"]
+      description = article_hash["description"]
+      url = article_hash["url"]
+      publishedAt = article_hash["publishedAt"]
+      category = article_hash["category"]
+      Article.new(title, description, url, contributor, publishedAt, category)
+      Category.new(category)
+    end
+    Article.all
   end
 
 end
